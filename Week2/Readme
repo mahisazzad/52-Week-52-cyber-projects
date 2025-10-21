@@ -1,0 +1,29 @@
+# Caesar Cipher in Python 🔐
+
+A classic encryption algorithm implemented in Python—simple, elegant, and still relevant for learning the basics of cryptography.
+
+## 🔍 What It Does
+
+- Encrypts text using a Caesar cipher with a user-defined key.
+- Decrypts text using the reverse key: `26 - encryption_key`.
+- Handles uppercase and lowercase letters.
+
+
+## 🧠 How It Works
+
+The Caesar cipher shifts each letter by a fixed number of positions in the alphabet.  
+For example, with key = 3:
+
+- `A → D`, `B → E`, ..., `Z → C`
+
+To decrypt, use key = `26 - 3 = 23`:
+
+- `D → A`, `E → B`, ..., `C → Z`
+
+This works because the cipher operates modulo 26.
+
+## 🛠 Usage
+
+```python
+encrypt("HELLO", key=3)  # returns 'KHOOR'
+decrypt("KHOOR", key=23)  # returns 'HELLO' #key for decryption is 26-n. n is key of encryption
