@@ -1,0 +1,12 @@
+# simple.txt
+
+This is a sample file for integrity checking.
+It contains a few lines of text.
+You can modify this file to test hash changes.
+Cybersecurity is about protecting data and systems.
+SHA-256 ensures file authenticity and integrity.
+# Tampered content
+
+# Tampered content
+
+# Tampered content
