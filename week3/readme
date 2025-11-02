@@ -1,1 +1,31 @@
+# 🛡️ File Integrity Checker — Week 3 of #52Weeks52CyberProjects
+
+A Python tool to detect file tampering using SHA-256 hashing. This project demonstrates how to baseline a file’s hash, simulate tampering, and verify integrity — all in one script.
+
+## ✅ Features
+
+- Calculates SHA-256 hash of a target file
+- Saves baseline hash to a JSON file
+- Compares current hash against baseline to detect changes
+- Includes tester functions to simulate tampering and restoration
+- Prints clear status messages for each step
+
+## 🧠 Why This Project?
+
+File integrity is a cornerstone of cybersecurity. This project helped me explore:
+
+- Cryptographic hashing with `hashlib`
+- Secure baseline storage using JSON
+- Practical integrity checks for real-world use cases
+- Tampering simulation and recovery workflows
+
+## 🛠 How It Works
+
+1. Reads the original file content
+2. Calculates and stores its SHA-256 hash
+3. Simulates tampering by appending content
+4. Compares current hash to baseline
+5. Restores original content and rechecks integrity
+
+
 
