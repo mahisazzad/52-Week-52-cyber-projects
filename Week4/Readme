@@ -1,0 +1,46 @@
+🛡️ Nmap Port Scanner in Python
+A lightweight Python wrapper around Nmap for scanning hosts, detecting services, and exploring open ports — perfect for learning the basics of network reconnaissance.
+
+🔍 What It Does
+Scans a target IP using Nmap’s -sV and -sC options
+
+Lists hostnames, states, protocols, and port details
+
+Parses and prints scan results in a readable format
+
+Uses the python-nmap library for integration
+
+🧠 How It Works
+The script uses Nmap’s scanning engine via Python bindings:
+
+-sV: Detects service versions
+
+-sC: Runs default Nmap scripts
+
+Results are parsed using nmap.PortScanner()
+
+Output includes host status, protocols, and port states
+
+Example target: 45.33.32.156
+
+🛠 Usage
+
+import nmap
+
+nm = nmap.PortScanner()
+target = "45.33.32.156"
+options = "-sV -sC"
+
+nm.scan(target, arguments=options)
+
+for host in nm.all_hosts():
+    print("Host: %s (%s)" % (host, nm[host].hostname()))
+    print("State: %s" % nm[host].state())
+    for protocol in nm[host].all_protocols():
+        print("Protocol: %s" % protocol)
+        port_info = nm[host][protocol]
+        for port, state in port_info.items():
+            print("Port: %s\tState: %s" % (port, state))
+
+⚠️ Note
+Always scan responsibly. Only use this tool on systems you own or have explicit permission to test.
