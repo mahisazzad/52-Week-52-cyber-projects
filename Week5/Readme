@@ -1,0 +1,88 @@
+
+
+# 🕵️‍♂️ Python Packet Sniffer with Credential Detection
+
+This project is a lightweight Python-based packet sniffer built using Scapy. It captures HTTP traffic on a specified network interface and detects potential credentials (e.g., usernames, passwords) in raw payloads. It also includes a local test server and traffic simulator for safe, offline testing.
+
+---
+
+## 📦 Features
+
+- Sniffs HTTP requests in real time
+- Extracts and prints host + path from HTTP headers
+- Detects credential-like patterns in raw payloads
+- Works with WinPcap/Npcap interfaces on Windows
+- Includes local server and traffic simulator for testing
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/packet-sniffer.git
+cd packet-sniffer
+```
+
+### 2. Install dependencies
+
+```bash
+pip install scapy requests
+```
+
+### 3. Run the sniffer (as Administrator)
+
+```powershell
+python packet_sniffer.py -i "<your_interface_name>"
+```
+
+Use `list_interfaces.py` to find your interface name:
+```powershell
+python list_interfaces.py
+```
+
+---
+
+## 🧪 Local Testing (No Internet Required)
+
+### Step 1: Start the local server
+
+```powershell
+python local_server.py
+```
+
+### Step 2: Simulate login traffic
+
+```powershell
+python simulate_local_login.py
+```
+
+### Expected output from sniffer:
+
+```
+[+] HTTP Request >> localhost:8080/
+[+] Possible credential >> username=admin&password=hunter2
+```
+
+---
+
+## 📁 File Overview
+
+| File                     | Purpose                                      |
+|--------------------------|----------------------------------------------|
+| `packet_sniffer.py`      | Main sniffer script                          |
+| `list_interfaces.py`     | Lists available capture interfaces           |
+| `local_server.py`        | Simple HTTP server for POST testing          |
+| `simulate_local_login.py`| Sends fake login requests to local server    |
+
+---
+
+## ⚠️ Notes
+
+- Requires **Administrator privileges** to sniff packets on Windows
+- Only captures **unencrypted HTTP traffic** (not HTTPS)
+- Best used in **controlled environments** for educational purposes
+
+---
+
