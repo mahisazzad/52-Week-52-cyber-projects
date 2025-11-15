@@ -1,0 +1,61 @@
+
+# ⌨️ Python Keylogger with Pynput
+
+This Week 6 project in the #52Weeks52CyberProjects series is a lightweight Python keylogger built using the `pynput` library. It captures keystrokes — including special keys — and logs them to a local file in the user's Documents directory. Designed for educational and ethical use only, this project demonstrates how input monitoring works at a low level.
+
+---
+
+## 📦 Features
+
+- Captures all keystrokes in real time  
+- Logs both character keys and special keys (e.g., Enter, Space, Shift)  
+- Stores logs in a safe, user-accessible path (`~/Documents/keylog.txt`)  
+- Runs silently in the background using `pynput.keyboard.Listener`  
+- Minimal and cross-platform (Windows/Linux)
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/mahisazzad/52-Week-52-cyber-projects.git
+cd 52-Week-52-cyber-projects/Week6
+```
+
+### 2. Install dependencies
+
+```bash
+pip install pynput
+```
+
+### 3. Run the keylogger (requires Administrator/root privileges)
+
+```bash
+python keylogger.py
+```
+
+You should see:
+
+```
+Logging keys to: C:\Users\<YourUsername>\Documents\keylog.txt
+```
+
+---
+
+## 📁 File Overview
+
+| File           | Purpose                          |
+|----------------|----------------------------------|
+| `keylogger.py` | Main script to capture keystrokes|
+
+---
+
+## ⚠️ Notes
+
+- This tool is for **educational and ethical use only**  
+- Requires **Administrator/root privileges** to access keyboard hooks  
+- Logs are saved to `~/Documents/keylog.txt`  
+- Avoid using this on shared or production systems without explicit permission
+
