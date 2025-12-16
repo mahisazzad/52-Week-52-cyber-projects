@@ -1,0 +1,120 @@
+
+# XSS Demo Web Application
+
+A deliberately vulnerable PHP web application designed to demonstrate **Cross-Site Scripting (XSS)** attacks (both reflected and stored) and their defenses.  
+This project is intended for **educational purposes only** — do not deploy it to production.
+
+---
+
+## Features
+
+- **Reflected XSS** via query parameters and flash messages.
+- **Stored XSS** via user-submitted comments.
+- **Defended version** with:
+  - Output encoding (`htmlspecialchars`)
+  - Input validation
+  - Flash message allowlist
+  - Strict Content Security Policy (CSP)
+  - Security headers (`X-Frame-Options`, `X-Content-Type-Options`, etc.)
+
+---
+
+## Project Structure
+
+```
+xss-demo/
+├── index.php        # vulnerable or defended app (swap versions)
+├── comments.json    # naive storage for comments
+├── style.css        # basic styling
+└── TestChecklist.md # optional checklist for verifying defenses
+```
+
+---
+
+## Setup (Windows 11)
+
+1. **Install PHP**
+   - Download latest PHP for Windows: https://windows.php.net/download/
+   - Extract to `C:\php`
+   - Add `C:\php` to your PATH.
+
+2. **Verify installation**
+   ```powershell
+   php -v
+   ```
+
+3. **Run the server**
+   ```powershell
+   cd C:\xss-demo
+   php -S localhost:8000
+   ```
+
+4. **Open in browser**
+   - Visit: [http://localhost:8000/index.php](http://localhost:8000/index.php)
+
+---
+
+## Exploiting the Vulnerable Version
+
+- **Reflected XSS (search):**
+  ```
+  http://localhost:8000/index.php?q=<script>alert('XSS')</script>
+  ```
+
+- **Reflected XSS (flash):**
+  ```
+  http://localhost:8000/index.php?msg=<img src=x onerror=alert('XSS')>
+  ```
+
+- **Stored XSS (comments):**
+  Submit a comment with:
+  ```html
+  <script>alert('Stored XSS')</script>
+  ```
+
+---
+
+## Defenses in the Hardened Version
+
+- **Output Encoding:** All user input is encoded before rendering.
+- **Input Validation:** Length limits and trimming applied.
+- **Flash Allowlist:** Only known keys map to safe messages.
+- **CSP:** Blocks inline scripts, `eval`, and unsafe sources.
+- **Security Headers:** Prevent framing, MIME sniffing, and unsafe referrers.
+
+---
+
+## Testing Defenses
+
+Use the included [TestChecklist.md](./TestChecklist.md) to verify:
+
+- Reflected payloads render as text.
+- Stored payloads do not execute.
+- CSP blocks inline scripts and `eval`.
+- Input length is truncated safely.
+
+---
+
+## Screenshots
+
+Keep screenshots in a `screenshots/` folder and reference them in the checklist.
+
+---
+
+## Disclaimer
+
+This project is for **educational and research purposes only**.  
+Do not deploy vulnerable code to production environments. Always apply proper encoding, validation, and CSP in real applications.
+
+---
+
+## License
+
+MIT License
+```
+
+---
+
+This README gives you a professional GitHub landing page: clear purpose, setup instructions, exploitation steps, defenses, and disclaimers.  
+
+Do you want me to also generate a **shorter, student-friendly version** (less formal, more step-by-step) for classroom use?
