@@ -1,0 +1,99 @@
+
+# 🔐 Secure User Authentication System (Flask + Argon2)
+
+A minimal yet secure user registration and login system built with Flask, SQLite, and Argon2id password hashing. Designed for educational and real-world use, this project demonstrates best practices in password storage, salting, and authentication workflows.
+
+---
+
+## 🚀 Features
+
+- ✅ User registration and login with email + password
+- 🔐 Passwords hashed using **Argon2id** (memory-hard, salted)
+- 🧂 Unique salt per password (handled by Argon2)
+- 🧊 Optional pepper support for added security
+- 🗄️ SQLite database with secure schema
+- 🧠 Rate-limiting stub to prevent brute-force login attempts
+- 🧼 Clean UI with inline HTML templates
+- 🧪 Easy to extend for email verification, password reset, or JWT
+
+---
+
+## 🛠️ Tech Stack
+
+| Component     | Description                          |
+|---------------|--------------------------------------|
+| Python        | Core language                        |
+| Flask         | Web framework                        |
+| Argon2-cffi   | Secure password hashing              |
+| SQLite        | Lightweight database                 |
+| DB Browser    | GUI for inspecting `auth.db`         |
+
+---
+
+## 📸 Demo Screenshots
+
+| Screenshot | Description |
+|-----------|-------------|
+| ![Terminal running Flask app](https://via.placeholder.com/400x200?text=Flask+Server+Running) | Flask app running with virtual environment activated |
+| ![Registration and login success](https://via.placeholder.com/400x200?text=Login+Success) | Browser view showing successful registration and login |
+| ![Database view of hashed password](https://via.placeholder.com/400x200?text=Hashed+Password+Stored) | DB Browser showing Argon2-hashed password in `users` table |
+
+> Replace placeholders with your actual screenshots before publishing.
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/yourusername/secure-auth-flask.git
+   cd secure-auth-flask
+   ```
+
+2. **Create virtual environment**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate  # Windows
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install flask argon2-cffi
+   ```
+
+4. **Run the app**
+   ```bash
+   python app.py
+   ```
+
+5. **Visit in browser**
+   ```
+   http://127.0.0.1:5000
+   ```
+
+---
+
+## 🧠 Security Notes
+
+- Argon2id includes a unique salt per password — no need to store it separately.
+- Optional pepper can be added via environment variable: `AUTH_PEPPER`
+- Password hashes are stored as long strings like: `$argon2id$v=19$m=65536,t=3,p=2$...`
+- Never store plaintext passwords. Never log them. Never email them.
+
+---
+
+## 📂 File Structure
+
+```
+secure-auth/
+├── app.py           # Main Flask app
+├── schema.sql       # SQLite schema
+├── auth.db          # Auto-created database
+└── README.md        # Project documentation
+```
+
+---
+
+## 📬 Contact
+
+Built by Mahi Sazzad
